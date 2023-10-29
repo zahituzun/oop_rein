@@ -1,0 +1,30 @@
+import json
+
+json_file = "/home/zahit/PycharmProjects/autodidacc/proj/vector_space_V3.json"
+
+
+
+
+aranan_anahtarlar = ["self_munition_infoagent_rocket_count_digit_0", "self_munition_infoagent_rocket_count_digit_120"]
+
+
+
+
+
+with open(json_file, 'r') as dosya:
+    veri = json.load(dosya)
+
+
+indeksler = {}
+for anahtar in aranan_anahtarlar:
+    if anahtar in veri:
+        indeksler[anahtar] = list(veri.keys()).index(anahtar)
+
+for anahtar, indeks in indeksler.items():
+    print(f"'{anahtar}' anahtarı {indeks} indeksinde bulunuyor.")
+
+with open("sonuclar.txt", "a") as sonuc_dosyasi:
+    for anahtar, indeks in indeksler.items():
+        satir = f"'{anahtar}' anahtarı {indeks} indeksinde bulunuyor."
+        print(satir)
+        sonuc_dosyasi.write(satir + "\n")
